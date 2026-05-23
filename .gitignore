@@ -1,0 +1,13 @@
+# OS/editor files
+.DS_Store
+*.swp
+*.swo
+
+# Local notes and source checkouts
+notes/
+codex-src/
+
+# Build/output scratch
+tmp/
+.cache/
+
