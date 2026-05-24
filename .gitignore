@@ -2,6 +2,7 @@
 .DS_Store
 *.swp
 *.swo
+__pycache__/
 
 # Local notes and source checkouts
 notes/
@@ -10,4 +11,3 @@ codex-src/
 # Build/output scratch
 tmp/
 .cache/
-
