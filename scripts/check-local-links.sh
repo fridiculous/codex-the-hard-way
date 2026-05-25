@@ -19,6 +19,14 @@ while IFS= read -r file; do
       status=1
     fi
   done < <(perl -nE 'while (/\[[^\]]+\]\(([^)]+)\)/g) { say $1 }' "$file")
-done < <(find . -name '*.md' -not -path './.git/*' | sort)
+done < <(
+  find . -name '*.md' \
+    -not -path './.git/*' \
+    -not -path './tmp/*' \
+    -not -path './.cache/*' \
+    -not -path './notes/*' \
+    -not -path './codex-src/*' \
+    | sort
+)
 
 exit "$status"

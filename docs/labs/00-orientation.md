@@ -9,6 +9,7 @@ By the end of this lab, you should have:
 - A local checkout of the Codex source you intend to study.
 - A journal file for recording observations.
 - A repeatable way to search the source.
+- A deterministic fixture run initialized from this repo.
 - A first-pass vocabulary for the harness.
 
 ## The Harness, In One Pass
@@ -64,6 +65,18 @@ printf "# Codex Source Journal\n\n" > notes/source-journal.md
 
 Do not treat the journal as polished documentation. It is a lab notebook: commit hashes, file paths, questions, wrong guesses, and corrected mental models are all useful.
 
+## Initialize The Deterministic Fixture
+
+Run the checked-in initializer:
+
+```sh
+scripts/run-deterministic-lab.sh
+```
+
+The script copies `fixtures/deterministic-turn` into `tmp/deterministic-lab/latest/workspace`, creates an isolated `CODEX_HOME`, and captures prompt input JSON under `tmp/deterministic-lab/latest/artifacts`.
+
+This run is deterministic because it uses `codex debug prompt-input`. It does not ask the model to complete the task. It verifies prompt compilation and `AGENTS.md` discovery before later labs add live model, tool, approval, and patch behavior.
+
 ## First Source Probes
 
 Run these searches and record the most promising files:
@@ -93,4 +106,3 @@ Before moving to Lab 01, you should be able to answer:
 - Where does tool output re-enter the conversation?
 
 It is fine if the answers are partial. The point is to make the unknowns explicit.
-

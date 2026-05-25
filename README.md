@@ -28,23 +28,40 @@ If a chapter cannot point back to source code or an observable behavior, it does
 | Lab | Topic | Output |
 | --- | --- | --- |
 | [00](docs/labs/00-orientation.md) | Orientation and local setup | A source checkout and reading journal |
-| [01](docs/labs/01-follow-a-turn.md) | Follow one user turn | A turn timeline from prompt to final answer |
-| 02 | Instruction stack and context assembly | A layered prompt map |
-| 03 | Tool dispatch | A map of tool schemas, routing, and results |
-| 04 | Sandbox and approval policy | A policy decision table |
-| 05 | File edits and patch application | A minimal patch walkthrough |
-| 06 | Conversation state and compaction | A state transition diagram |
-| 07 | Observability and debugging | A trace checklist |
-| 08 | Build a tiny harness | A small runnable model of the loop |
+| [01](docs/labs/01-follow-a-turn.md) | Follow one user turn | A rendered sequence flow and turn timeline |
+| [02](docs/labs/02-openai-api-boundary.md) | OpenAI API boundary | A Responses vs Chat Completions request map |
+| 03 | Instruction stack and context assembly | A layered prompt map using [AGENTS.md and approval tests](docs/reference/testing-agents-and-approvals.md) |
+| 04 | Tool dispatch | A map of tool schemas, routing, and results |
+| 05 | Sandbox and approval policy | A policy decision table |
+| 06 | File edits and patch application | A minimal patch walkthrough |
+| 07 | Conversation state and compaction | A state transition diagram |
+| 08 | Observability and debugging | A trace checklist |
+| 09 | Build a tiny harness | A small runnable model of the loop |
 
-Only the first labs are drafted today. Later labs should be added when they can be grounded in a specific source checkout and verified against a running harness.
+Only the first labs are drafted today. Lab 01 includes the concrete UI/daemon/model sequence flow to verify, and Lab 02 explains the OpenAI API boundary behind the model edge. Later labs should be added when they can be grounded in a specific source checkout and verified against a running harness.
 
 ## Repository Shape
 
 - [docs/labs](docs/labs) contains the guided path.
 - [docs/reference](docs/reference) contains reusable source-reading methods and vocabulary.
 - [exercises](exercises) contains standalone drills that can be attached to multiple labs.
+- [fixtures](fixtures) contains checked-in deterministic lab workspaces.
 - [scripts](scripts) contains local checks for the repo itself.
+
+## Deterministic Walkthrough
+
+The repo includes an encapsulated initializer for prompt-compilation experiments:
+
+```sh
+scripts/run-deterministic-lab.sh
+```
+
+It copies [fixtures/deterministic-turn](fixtures/deterministic-turn) into an ignored workspace at `tmp/deterministic-lab/latest`, uses an isolated `CODEX_HOME`, runs `codex debug prompt-input`, and writes artifacts under `tmp/deterministic-lab/latest/artifacts`.
+
+Reference lectures:
+
+- [Testing AGENTS.md And Approvals](docs/reference/testing-agents-and-approvals.md)
+- [OpenAI API Surfaces: Responses vs Chat Completions](docs/reference/openai-api-surfaces.md)
 
 ## Source Reading Philosophy
 
@@ -59,5 +76,4 @@ When a lab depends on an exact file, pin the source checkout, record the commit,
 
 ## Status
 
-This repo is an initial scaffold. The next useful milestone is to choose the first Codex source checkout to study, then fill Lab 01 with exact file references and a captured trace.
-
+This repo is an initial scaffold. The next useful milestone is to choose the first Codex source checkout to study, then fill Lab 01's sequence flow with exact file references, compiled prompt evidence, tool-call evidence, approval branches, hook boundaries, AGENTS.md tests, and a captured trace.
