@@ -62,6 +62,7 @@ Reference lectures:
 
 - [Testing AGENTS.md And Approvals](docs/reference/testing-agents-and-approvals.md)
 - [OpenAI API Surfaces: Responses vs Chat Completions](docs/reference/openai-api-surfaces.md)
+- [Codex Vertical Stack](docs/reference/codex-vertical-stack.md)
 
 ## Source Reading Philosophy
 
